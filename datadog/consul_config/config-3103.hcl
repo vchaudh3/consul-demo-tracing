@@ -37,8 +37,6 @@ config_entries {
       
       config {
         envoy_dogstatsd_url = "udp://10.5.0.6:8125"
-        envoy_prometheus_bind_addr = "0.0.0.0:9102"
-        protocol = "http"
       
         envoy_extra_static_clusters_json = <<EOL
           {
