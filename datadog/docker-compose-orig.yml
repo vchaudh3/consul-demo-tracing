@@ -149,16 +149,6 @@ services:
       vpcbr:
         ipv4_address: 10.5.0.6
 
-  prometheus:
-    image: prom/prometheus
-    ports:
-      - 9090:9090
-    volumes:
-      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.7
-
 networks:
   vpcbr:
     driver: bridge

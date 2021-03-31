@@ -4,7 +4,7 @@ version: "3.3"
 
 services:
 
-  consul:
+  consul-1:
     image: consul:1.6.1
     command: ["consul", "agent", "-config-file=/config/config.hcl", "-config-dir=/config"]
     volumes:
@@ -13,8 +13,27 @@ services:
     - 8500:8500
     networks:
       vpcbr:
-        ipv4_address: 10.5.0.2
-
+        ipv4_address: 10.5.0.7
+  consul-2:
+    image: consul:1.6.1
+    command: ["consul", "agent", "-config-file=/config/config.hcl", "-config-dir=/config"]
+    volumes:
+    - "./consul_config:/config"
+    ports:
+    - 8504:8500
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.8
+  consul-3:
+    image: consul:1.6.1
+    command: ["consul", "agent", "-config-file=/config/config.hcl", "-config-dir=/config"]
+    volumes:
+    - "./consul_config:/config"
+    ports:
+    - 8505:8500
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.9
   ingress:
     image: nicholasjackson/fake-service:v0.7.1
     environment:
@@ -148,16 +167,6 @@ services:
     networks:
       vpcbr:
         ipv4_address: 10.5.0.6
-
-  prometheus:
-    image: prom/prometheus
-    ports:
-      - 9090:9090
-    volumes:
-      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.7
 
 networks:
   vpcbr:
