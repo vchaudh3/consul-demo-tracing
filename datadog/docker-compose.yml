@@ -160,6 +160,17 @@ services:
       vpcbr:
         ipv4_address: 10.5.0.7
 
+  grafana:
+    image: grafana/grafana
+    ports:
+      #- 9090:9090
+      - 3000:3000
+    volumes:
+      - "./grafana/grafana.yml:/etc/grafana/grafana.yml"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.8
+
 networks:
   vpcbr:
     driver: bridge
